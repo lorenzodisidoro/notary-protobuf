@@ -1,0 +1,12 @@
+
+syntax = "proto3";
+
+package service;
+
+service NotaryService {
+  rpc NewMessage (stream MessageData) returns (stream MessageData) {}
+}
+
+message MessageData {
+  string msg = 1;
+}
