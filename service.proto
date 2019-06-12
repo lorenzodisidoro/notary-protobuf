@@ -3,10 +3,37 @@ syntax = "proto3";
 
 package service;
 
+// NotaryService defines methods provided by notary-server
+// all methods require API-key authentication
 service NotaryService {
-  rpc NewMessage (stream MessageData) returns (stream MessageData) {}
+  rpc Subscribe(SubscribeRequest) returns (SubscribeReply) {}
+  rpc Publish(PublishRequest) returns (PublishReply) {}
+  rpc Pull (stream PullData) returns (stream PullData) {}
 }
 
-message MessageData {
-  string msg = 1;
+// publish can be called by a notary-client to open a topic and publish data on it
+message PublishRequest {
+  string topic = 1;
+  string data = 2;
+}
+
+message PublishReply {
+  bool status = 1;
+  string info = 2;
+}
+
+// subscribe can be called by Stamper to subscribe topic
+message SubscribeRequest {
+  string topic = 1;
+}
+
+message SubscribeReply {
+  bool status = 1;
+  string info = 2;
+}
+
+// stream 
+message PullData {
+  string topic = 1;
+  string data = 2;
 }
