@@ -24,61 +24,264 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type MessageData struct {
-	Msg                  string   `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
+// publish can be called by a notary-client to open a topic and publish data on it
+type PublishRequest struct {
+	Topic                string   `protobuf:"bytes,1,opt,name=topic,proto3" json:"topic,omitempty"`
+	Data                 string   `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *MessageData) Reset()         { *m = MessageData{} }
-func (m *MessageData) String() string { return proto.CompactTextString(m) }
-func (*MessageData) ProtoMessage()    {}
-func (*MessageData) Descriptor() ([]byte, []int) {
+func (m *PublishRequest) Reset()         { *m = PublishRequest{} }
+func (m *PublishRequest) String() string { return proto.CompactTextString(m) }
+func (*PublishRequest) ProtoMessage()    {}
+func (*PublishRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a0b84a42fa06f626, []int{0}
 }
 
-func (m *MessageData) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_MessageData.Unmarshal(m, b)
+func (m *PublishRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PublishRequest.Unmarshal(m, b)
 }
-func (m *MessageData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_MessageData.Marshal(b, m, deterministic)
+func (m *PublishRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PublishRequest.Marshal(b, m, deterministic)
 }
-func (m *MessageData) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MessageData.Merge(m, src)
+func (m *PublishRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PublishRequest.Merge(m, src)
 }
-func (m *MessageData) XXX_Size() int {
-	return xxx_messageInfo_MessageData.Size(m)
+func (m *PublishRequest) XXX_Size() int {
+	return xxx_messageInfo_PublishRequest.Size(m)
 }
-func (m *MessageData) XXX_DiscardUnknown() {
-	xxx_messageInfo_MessageData.DiscardUnknown(m)
+func (m *PublishRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PublishRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MessageData proto.InternalMessageInfo
+var xxx_messageInfo_PublishRequest proto.InternalMessageInfo
 
-func (m *MessageData) GetMsg() string {
+func (m *PublishRequest) GetTopic() string {
 	if m != nil {
-		return m.Msg
+		return m.Topic
+	}
+	return ""
+}
+
+func (m *PublishRequest) GetData() string {
+	if m != nil {
+		return m.Data
+	}
+	return ""
+}
+
+type PublishReply struct {
+	Status               bool     `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	Info                 string   `protobuf:"bytes,2,opt,name=info,proto3" json:"info,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PublishReply) Reset()         { *m = PublishReply{} }
+func (m *PublishReply) String() string { return proto.CompactTextString(m) }
+func (*PublishReply) ProtoMessage()    {}
+func (*PublishReply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{1}
+}
+
+func (m *PublishReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PublishReply.Unmarshal(m, b)
+}
+func (m *PublishReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PublishReply.Marshal(b, m, deterministic)
+}
+func (m *PublishReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PublishReply.Merge(m, src)
+}
+func (m *PublishReply) XXX_Size() int {
+	return xxx_messageInfo_PublishReply.Size(m)
+}
+func (m *PublishReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_PublishReply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PublishReply proto.InternalMessageInfo
+
+func (m *PublishReply) GetStatus() bool {
+	if m != nil {
+		return m.Status
+	}
+	return false
+}
+
+func (m *PublishReply) GetInfo() string {
+	if m != nil {
+		return m.Info
+	}
+	return ""
+}
+
+// subscribe can be called by Stamper to subscribe topic
+type SubscribeRequest struct {
+	Topic                string   `protobuf:"bytes,1,opt,name=topic,proto3" json:"topic,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SubscribeRequest) Reset()         { *m = SubscribeRequest{} }
+func (m *SubscribeRequest) String() string { return proto.CompactTextString(m) }
+func (*SubscribeRequest) ProtoMessage()    {}
+func (*SubscribeRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{2}
+}
+
+func (m *SubscribeRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SubscribeRequest.Unmarshal(m, b)
+}
+func (m *SubscribeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SubscribeRequest.Marshal(b, m, deterministic)
+}
+func (m *SubscribeRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SubscribeRequest.Merge(m, src)
+}
+func (m *SubscribeRequest) XXX_Size() int {
+	return xxx_messageInfo_SubscribeRequest.Size(m)
+}
+func (m *SubscribeRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SubscribeRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SubscribeRequest proto.InternalMessageInfo
+
+func (m *SubscribeRequest) GetTopic() string {
+	if m != nil {
+		return m.Topic
+	}
+	return ""
+}
+
+type SubscribeReply struct {
+	Status               bool     `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	Info                 string   `protobuf:"bytes,2,opt,name=info,proto3" json:"info,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SubscribeReply) Reset()         { *m = SubscribeReply{} }
+func (m *SubscribeReply) String() string { return proto.CompactTextString(m) }
+func (*SubscribeReply) ProtoMessage()    {}
+func (*SubscribeReply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{3}
+}
+
+func (m *SubscribeReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SubscribeReply.Unmarshal(m, b)
+}
+func (m *SubscribeReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SubscribeReply.Marshal(b, m, deterministic)
+}
+func (m *SubscribeReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SubscribeReply.Merge(m, src)
+}
+func (m *SubscribeReply) XXX_Size() int {
+	return xxx_messageInfo_SubscribeReply.Size(m)
+}
+func (m *SubscribeReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_SubscribeReply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SubscribeReply proto.InternalMessageInfo
+
+func (m *SubscribeReply) GetStatus() bool {
+	if m != nil {
+		return m.Status
+	}
+	return false
+}
+
+func (m *SubscribeReply) GetInfo() string {
+	if m != nil {
+		return m.Info
+	}
+	return ""
+}
+
+// stream
+type PullData struct {
+	Topic                string   `protobuf:"bytes,1,opt,name=topic,proto3" json:"topic,omitempty"`
+	Data                 string   `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PullData) Reset()         { *m = PullData{} }
+func (m *PullData) String() string { return proto.CompactTextString(m) }
+func (*PullData) ProtoMessage()    {}
+func (*PullData) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{4}
+}
+
+func (m *PullData) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PullData.Unmarshal(m, b)
+}
+func (m *PullData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PullData.Marshal(b, m, deterministic)
+}
+func (m *PullData) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PullData.Merge(m, src)
+}
+func (m *PullData) XXX_Size() int {
+	return xxx_messageInfo_PullData.Size(m)
+}
+func (m *PullData) XXX_DiscardUnknown() {
+	xxx_messageInfo_PullData.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PullData proto.InternalMessageInfo
+
+func (m *PullData) GetTopic() string {
+	if m != nil {
+		return m.Topic
+	}
+	return ""
+}
+
+func (m *PullData) GetData() string {
+	if m != nil {
+		return m.Data
 	}
 	return ""
 }
 
 func init() {
-	proto.RegisterType((*MessageData)(nil), "service.MessageData")
+	proto.RegisterType((*PublishRequest)(nil), "service.PublishRequest")
+	proto.RegisterType((*PublishReply)(nil), "service.PublishReply")
+	proto.RegisterType((*SubscribeRequest)(nil), "service.SubscribeRequest")
+	proto.RegisterType((*SubscribeReply)(nil), "service.SubscribeReply")
+	proto.RegisterType((*PullData)(nil), "service.PullData")
 }
 
 func init() { proto.RegisterFile("service.proto", fileDescriptor_a0b84a42fa06f626) }
 
 var fileDescriptor_a0b84a42fa06f626 = []byte{
-	// 117 bytes of a gzipped FileDescriptorProto
+	// 246 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2d, 0x4e, 0x2d, 0x2a,
-	0xcb, 0x4c, 0x4e, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x87, 0x72, 0x95, 0xe4, 0xb9,
-	0xb8, 0x7d, 0x53, 0x8b, 0x8b, 0x13, 0xd3, 0x53, 0x5d, 0x12, 0x4b, 0x12, 0x85, 0x04, 0xb8, 0x98,
-	0x73, 0x8b, 0xd3, 0x25, 0x18, 0x15, 0x18, 0x35, 0x38, 0x83, 0x40, 0x4c, 0x23, 0x7f, 0x2e, 0x5e,
-	0xbf, 0xfc, 0x92, 0xc4, 0xa2, 0xca, 0x60, 0x88, 0x0e, 0x21, 0x3b, 0x2e, 0x2e, 0xbf, 0xd4, 0x72,
-	0xa8, 0x26, 0x21, 0x11, 0x3d, 0x98, 0xc1, 0x48, 0xc6, 0x48, 0x61, 0x15, 0x55, 0x62, 0xd0, 0x60,
-	0x34, 0x60, 0x4c, 0x62, 0x03, 0xbb, 0xc0, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0x11, 0x8d, 0x96,
-	0x9b, 0x92, 0x00, 0x00, 0x00,
+	0xcb, 0x4c, 0x4e, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x87, 0x72, 0x95, 0xac, 0xb8,
+	0xf8, 0x02, 0x4a, 0x93, 0x72, 0x32, 0x8b, 0x33, 0x82, 0x52, 0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0x84,
+	0x44, 0xb8, 0x58, 0x4b, 0xf2, 0x0b, 0x32, 0x93, 0x25, 0x18, 0x15, 0x18, 0x35, 0x38, 0x83, 0x20,
+	0x1c, 0x21, 0x21, 0x2e, 0x96, 0x94, 0xc4, 0x92, 0x44, 0x09, 0x26, 0xb0, 0x20, 0x98, 0xad, 0x64,
+	0xc5, 0xc5, 0x03, 0xd7, 0x5b, 0x90, 0x53, 0x29, 0x24, 0xc6, 0xc5, 0x56, 0x5c, 0x92, 0x58, 0x52,
+	0x5a, 0x0c, 0xd6, 0xca, 0x11, 0x04, 0xe5, 0x81, 0xf4, 0x66, 0xe6, 0xa5, 0xe5, 0xc3, 0xf4, 0x82,
+	0xd8, 0x4a, 0x1a, 0x5c, 0x02, 0xc1, 0xa5, 0x49, 0xc5, 0xc9, 0x45, 0x99, 0x49, 0xa9, 0x78, 0x6d,
+	0x56, 0xb2, 0xe1, 0xe2, 0x43, 0x52, 0x49, 0xaa, 0x3d, 0x26, 0x5c, 0x1c, 0x01, 0xa5, 0x39, 0x39,
+	0x2e, 0x89, 0x25, 0x89, 0xc4, 0xfb, 0xcc, 0xe8, 0x30, 0x23, 0x17, 0xaf, 0x5f, 0x7e, 0x49, 0x62,
+	0x51, 0x65, 0x30, 0x24, 0x9c, 0x84, 0x1c, 0xb9, 0x38, 0xe1, 0xae, 0x10, 0x92, 0xd4, 0x83, 0x85,
+	0x26, 0xba, 0x1f, 0xa4, 0xc4, 0xb1, 0x49, 0x15, 0xe4, 0x54, 0x2a, 0x31, 0x08, 0x59, 0x73, 0xb1,
+	0x43, 0x83, 0x4b, 0x08, 0xa1, 0x0a, 0x35, 0xf0, 0xa5, 0x44, 0x31, 0x25, 0x20, 0x9a, 0x8d, 0xb8,
+	0x58, 0x40, 0xfe, 0x10, 0x12, 0x44, 0x52, 0x00, 0xf1, 0x96, 0x14, 0xa6, 0x90, 0x12, 0x83, 0x06,
+	0xa3, 0x01, 0x63, 0x12, 0x1b, 0x38, 0xae, 0x8d, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0x66, 0x2b,
+	0xfb, 0x75, 0xfc, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -93,7 +296,9 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type NotaryServiceClient interface {
-	NewMessage(ctx context.Context, opts ...grpc.CallOption) (NotaryService_NewMessageClient, error)
+	Subscribe(ctx context.Context, in *SubscribeRequest, opts ...grpc.CallOption) (*SubscribeReply, error)
+	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishReply, error)
+	Pull(ctx context.Context, opts ...grpc.CallOption) (NotaryService_PullClient, error)
 }
 
 type notaryServiceClient struct {
@@ -104,31 +309,49 @@ func NewNotaryServiceClient(cc *grpc.ClientConn) NotaryServiceClient {
 	return &notaryServiceClient{cc}
 }
 
-func (c *notaryServiceClient) NewMessage(ctx context.Context, opts ...grpc.CallOption) (NotaryService_NewMessageClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_NotaryService_serviceDesc.Streams[0], "/service.NotaryService/NewMessage", opts...)
+func (c *notaryServiceClient) Subscribe(ctx context.Context, in *SubscribeRequest, opts ...grpc.CallOption) (*SubscribeReply, error) {
+	out := new(SubscribeReply)
+	err := c.cc.Invoke(ctx, "/service.NotaryService/Subscribe", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &notaryServiceNewMessageClient{stream}
+	return out, nil
+}
+
+func (c *notaryServiceClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishReply, error) {
+	out := new(PublishReply)
+	err := c.cc.Invoke(ctx, "/service.NotaryService/Publish", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *notaryServiceClient) Pull(ctx context.Context, opts ...grpc.CallOption) (NotaryService_PullClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_NotaryService_serviceDesc.Streams[0], "/service.NotaryService/Pull", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &notaryServicePullClient{stream}
 	return x, nil
 }
 
-type NotaryService_NewMessageClient interface {
-	Send(*MessageData) error
-	Recv() (*MessageData, error)
+type NotaryService_PullClient interface {
+	Send(*PullData) error
+	Recv() (*PullData, error)
 	grpc.ClientStream
 }
 
-type notaryServiceNewMessageClient struct {
+type notaryServicePullClient struct {
 	grpc.ClientStream
 }
 
-func (x *notaryServiceNewMessageClient) Send(m *MessageData) error {
+func (x *notaryServicePullClient) Send(m *PullData) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *notaryServiceNewMessageClient) Recv() (*MessageData, error) {
-	m := new(MessageData)
+func (x *notaryServicePullClient) Recv() (*PullData, error) {
+	m := new(PullData)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -137,41 +360,85 @@ func (x *notaryServiceNewMessageClient) Recv() (*MessageData, error) {
 
 // NotaryServiceServer is the server API for NotaryService service.
 type NotaryServiceServer interface {
-	NewMessage(NotaryService_NewMessageServer) error
+	Subscribe(context.Context, *SubscribeRequest) (*SubscribeReply, error)
+	Publish(context.Context, *PublishRequest) (*PublishReply, error)
+	Pull(NotaryService_PullServer) error
 }
 
 // UnimplementedNotaryServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedNotaryServiceServer struct {
 }
 
-func (*UnimplementedNotaryServiceServer) NewMessage(srv NotaryService_NewMessageServer) error {
-	return status.Errorf(codes.Unimplemented, "method NewMessage not implemented")
+func (*UnimplementedNotaryServiceServer) Subscribe(ctx context.Context, req *SubscribeRequest) (*SubscribeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Subscribe not implemented")
+}
+func (*UnimplementedNotaryServiceServer) Publish(ctx context.Context, req *PublishRequest) (*PublishReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Publish not implemented")
+}
+func (*UnimplementedNotaryServiceServer) Pull(srv NotaryService_PullServer) error {
+	return status.Errorf(codes.Unimplemented, "method Pull not implemented")
 }
 
 func RegisterNotaryServiceServer(s *grpc.Server, srv NotaryServiceServer) {
 	s.RegisterService(&_NotaryService_serviceDesc, srv)
 }
 
-func _NotaryService_NewMessage_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(NotaryServiceServer).NewMessage(&notaryServiceNewMessageServer{stream})
+func _NotaryService_Subscribe_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubscribeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotaryServiceServer).Subscribe(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.NotaryService/Subscribe",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotaryServiceServer).Subscribe(ctx, req.(*SubscribeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
-type NotaryService_NewMessageServer interface {
-	Send(*MessageData) error
-	Recv() (*MessageData, error)
+func _NotaryService_Publish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotaryServiceServer).Publish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.NotaryService/Publish",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotaryServiceServer).Publish(ctx, req.(*PublishRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NotaryService_Pull_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(NotaryServiceServer).Pull(&notaryServicePullServer{stream})
+}
+
+type NotaryService_PullServer interface {
+	Send(*PullData) error
+	Recv() (*PullData, error)
 	grpc.ServerStream
 }
 
-type notaryServiceNewMessageServer struct {
+type notaryServicePullServer struct {
 	grpc.ServerStream
 }
 
-func (x *notaryServiceNewMessageServer) Send(m *MessageData) error {
+func (x *notaryServicePullServer) Send(m *PullData) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *notaryServiceNewMessageServer) Recv() (*MessageData, error) {
-	m := new(MessageData)
+func (x *notaryServicePullServer) Recv() (*PullData, error) {
+	m := new(PullData)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -181,11 +448,20 @@ func (x *notaryServiceNewMessageServer) Recv() (*MessageData, error) {
 var _NotaryService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "service.NotaryService",
 	HandlerType: (*NotaryServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Subscribe",
+			Handler:    _NotaryService_Subscribe_Handler,
+		},
+		{
+			MethodName: "Publish",
+			Handler:    _NotaryService_Publish_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "NewMessage",
-			Handler:       _NotaryService_NewMessage_Handler,
+			StreamName:    "Pull",
+			Handler:       _NotaryService_Pull_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},
