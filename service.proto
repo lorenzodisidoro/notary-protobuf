@@ -9,6 +9,7 @@ service NotaryService {
   rpc Subscribe(SubscribeRequest) returns (SubscribeReply) {}
   rpc Publish(PublishRequest) returns (PublishReply) {}
   rpc Pull (stream PullData) returns (stream PullData) {}
+  rpc GetTopics(GetTopicsRequest) returns (GetTopicsReply) {}  
 }
 
 // publish can be called by a notary-client to open a topic and publish data on it
@@ -22,7 +23,7 @@ message PublishReply {
   string info = 2;
 }
 
-// subscribe can be called by Stamper to subscribe topic
+// subscribe can be called by Scheduler to subscribe topic
 message SubscribeRequest {
   string topic = 1;
 }
@@ -36,4 +37,11 @@ message SubscribeReply {
 message PullData {
   string topic = 1;
   string data = 2;
+}
+
+// Return published topics
+message GetTopicsRequest {}
+
+message GetTopicsReply {
+  repeated string topics = 1;
 }
