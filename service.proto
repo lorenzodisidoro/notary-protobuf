@@ -8,7 +8,7 @@ package service;
 service NotaryService {
   rpc Subscribe(SubscribeRequest) returns (SubscribeReply) {}
   rpc Publish(PublishRequest) returns (PublishReply) {}
-  rpc Pull (stream PullData) returns (stream PullData) {}
+  rpc Pull (stream PullDataRequest) returns (stream PullDataReply) {}
   rpc GetTopics(GetTopicsRequest) returns (GetTopicsReply) {}  
 }
 
@@ -35,8 +35,11 @@ message SubscribeReply {
 }
 
 // stream 
-message PullData {
+message PullDataRequest {
   string topic = 1;
+}
+
+message PullDataReply {
   string data = 2;
 }
 
