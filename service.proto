@@ -21,6 +21,7 @@ message PublishRequest {
 message PublishReply {
   bool status = 1;
   string info = 2;
+  string topicID = 3;
 }
 
 // subscribe can be called by Scheduler to subscribe topic
