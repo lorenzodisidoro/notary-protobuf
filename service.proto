@@ -8,6 +8,7 @@ package service;
 service NotaryService {
   rpc Subscribe(SubscribeRequest) returns (SubscribeReply) {}
   rpc Publish(PublishRequest) returns (PublishReply) {}
+  rpc Finalize(FinalizeRequest) returns (FinalizeReply) {}
   rpc Pull (stream PullDataRequest) returns (stream PullDataReply) {}
   rpc GetTopics(GetTopicsRequest) returns (GetTopicsReply) {}  
 }
@@ -22,6 +23,17 @@ message PublishReply {
   bool status = 1;
   string info = 2;
   string topicID = 3;
+}
+
+// update notarisation per topic to make it final 
+message FinalizeRequest {
+  string topic = 1;
+  string paymentID = 2;
+}
+
+message FinalizeReply {
+  bool status = 1;
+  string info = 2;
 }
 
 // subscribe can be called by Scheduler to subscribe topic
