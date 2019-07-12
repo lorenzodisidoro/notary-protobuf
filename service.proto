@@ -11,6 +11,7 @@ service NotaryService {
   rpc Finalize(FinalizeRequest) returns (FinalizeReply) {}
   rpc Pull (stream PullDataRequest) returns (stream PullDataReply) {}
   rpc GetTopics(GetTopicsRequest) returns (GetTopicsReply) {}  
+  rpc GetTopic(GetTopicRequest) returns (GetTopicReply) {}
 }
 
 // publish can be called by a notary-client to open a topic and publish data on it
@@ -61,4 +62,14 @@ message GetTopicsRequest {}
 
 message GetTopicsReply {
   repeated string topics = 1;
+}
+
+// Return topic info (status and opentimestamp hash)
+message GetTopicRequest {
+  string topic = 1;
+}
+
+message GetTopicReply {
+  string status = 1;
+  string hash = 2;
 }
