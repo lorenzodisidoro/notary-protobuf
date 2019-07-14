@@ -70,6 +70,8 @@ message GetTopicRequest {
 }
 
 message GetTopicReply {
-  string status = 1;
-  string hash = 2;
+  bool status = 1;
+  string info = 2;
+  string topicStatus = 3;
+  string otsHash = 4;
 }
