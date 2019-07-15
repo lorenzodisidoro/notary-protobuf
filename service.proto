@@ -61,7 +61,9 @@ message PullDataReply {
 message GetTopicsRequest {}
 
 message GetTopicsReply {
-  repeated string topics = 1;
+  bool status = 1;
+  string info = 2;
+  repeated string topics = 3;
 }
 
 // Return topic info (status and opentimestamp hash)
