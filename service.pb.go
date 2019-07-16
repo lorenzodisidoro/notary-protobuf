@@ -127,6 +127,101 @@ func (m *PublishReply) GetTopicID() string {
 	return ""
 }
 
+// update notarisation per topic to make it final
+type FinalizeRequest struct {
+	Topic                string   `protobuf:"bytes,1,opt,name=topic,proto3" json:"topic,omitempty"`
+	PaymentID            string   `protobuf:"bytes,2,opt,name=paymentID,proto3" json:"paymentID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FinalizeRequest) Reset()         { *m = FinalizeRequest{} }
+func (m *FinalizeRequest) String() string { return proto.CompactTextString(m) }
+func (*FinalizeRequest) ProtoMessage()    {}
+func (*FinalizeRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{2}
+}
+
+func (m *FinalizeRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FinalizeRequest.Unmarshal(m, b)
+}
+func (m *FinalizeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FinalizeRequest.Marshal(b, m, deterministic)
+}
+func (m *FinalizeRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FinalizeRequest.Merge(m, src)
+}
+func (m *FinalizeRequest) XXX_Size() int {
+	return xxx_messageInfo_FinalizeRequest.Size(m)
+}
+func (m *FinalizeRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_FinalizeRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FinalizeRequest proto.InternalMessageInfo
+
+func (m *FinalizeRequest) GetTopic() string {
+	if m != nil {
+		return m.Topic
+	}
+	return ""
+}
+
+func (m *FinalizeRequest) GetPaymentID() string {
+	if m != nil {
+		return m.PaymentID
+	}
+	return ""
+}
+
+type FinalizeReply struct {
+	Status               bool     `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	Info                 string   `protobuf:"bytes,2,opt,name=info,proto3" json:"info,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FinalizeReply) Reset()         { *m = FinalizeReply{} }
+func (m *FinalizeReply) String() string { return proto.CompactTextString(m) }
+func (*FinalizeReply) ProtoMessage()    {}
+func (*FinalizeReply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{3}
+}
+
+func (m *FinalizeReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FinalizeReply.Unmarshal(m, b)
+}
+func (m *FinalizeReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FinalizeReply.Marshal(b, m, deterministic)
+}
+func (m *FinalizeReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FinalizeReply.Merge(m, src)
+}
+func (m *FinalizeReply) XXX_Size() int {
+	return xxx_messageInfo_FinalizeReply.Size(m)
+}
+func (m *FinalizeReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_FinalizeReply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FinalizeReply proto.InternalMessageInfo
+
+func (m *FinalizeReply) GetStatus() bool {
+	if m != nil {
+		return m.Status
+	}
+	return false
+}
+
+func (m *FinalizeReply) GetInfo() string {
+	if m != nil {
+		return m.Info
+	}
+	return ""
+}
+
 // subscribe can be called by Scheduler to subscribe topic
 type SubscribeRequest struct {
 	Topic                string   `protobuf:"bytes,1,opt,name=topic,proto3" json:"topic,omitempty"`
@@ -139,7 +234,7 @@ func (m *SubscribeRequest) Reset()         { *m = SubscribeRequest{} }
 func (m *SubscribeRequest) String() string { return proto.CompactTextString(m) }
 func (*SubscribeRequest) ProtoMessage()    {}
 func (*SubscribeRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{2}
+	return fileDescriptor_a0b84a42fa06f626, []int{4}
 }
 
 func (m *SubscribeRequest) XXX_Unmarshal(b []byte) error {
@@ -180,7 +275,7 @@ func (m *SubscribeReply) Reset()         { *m = SubscribeReply{} }
 func (m *SubscribeReply) String() string { return proto.CompactTextString(m) }
 func (*SubscribeReply) ProtoMessage()    {}
 func (*SubscribeReply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{3}
+	return fileDescriptor_a0b84a42fa06f626, []int{5}
 }
 
 func (m *SubscribeReply) XXX_Unmarshal(b []byte) error {
@@ -234,7 +329,7 @@ func (m *PullDataRequest) Reset()         { *m = PullDataRequest{} }
 func (m *PullDataRequest) String() string { return proto.CompactTextString(m) }
 func (*PullDataRequest) ProtoMessage()    {}
 func (*PullDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{4}
+	return fileDescriptor_a0b84a42fa06f626, []int{6}
 }
 
 func (m *PullDataRequest) XXX_Unmarshal(b []byte) error {
@@ -273,7 +368,7 @@ func (m *PullDataReply) Reset()         { *m = PullDataReply{} }
 func (m *PullDataReply) String() string { return proto.CompactTextString(m) }
 func (*PullDataReply) ProtoMessage()    {}
 func (*PullDataReply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{5}
+	return fileDescriptor_a0b84a42fa06f626, []int{7}
 }
 
 func (m *PullDataReply) XXX_Unmarshal(b []byte) error {
@@ -312,7 +407,7 @@ func (m *GetTopicsRequest) Reset()         { *m = GetTopicsRequest{} }
 func (m *GetTopicsRequest) String() string { return proto.CompactTextString(m) }
 func (*GetTopicsRequest) ProtoMessage()    {}
 func (*GetTopicsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{6}
+	return fileDescriptor_a0b84a42fa06f626, []int{8}
 }
 
 func (m *GetTopicsRequest) XXX_Unmarshal(b []byte) error {
@@ -334,7 +429,9 @@ func (m *GetTopicsRequest) XXX_DiscardUnknown() {
 var xxx_messageInfo_GetTopicsRequest proto.InternalMessageInfo
 
 type GetTopicsReply struct {
-	Topics               []string `protobuf:"bytes,1,rep,name=topics,proto3" json:"topics,omitempty"`
+	Status               bool     `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	Info                 string   `protobuf:"bytes,2,opt,name=info,proto3" json:"info,omitempty"`
+	Topics               []string `protobuf:"bytes,3,rep,name=topics,proto3" json:"topics,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -344,7 +441,7 @@ func (m *GetTopicsReply) Reset()         { *m = GetTopicsReply{} }
 func (m *GetTopicsReply) String() string { return proto.CompactTextString(m) }
 func (*GetTopicsReply) ProtoMessage()    {}
 func (*GetTopicsReply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{7}
+	return fileDescriptor_a0b84a42fa06f626, []int{9}
 }
 
 func (m *GetTopicsReply) XXX_Unmarshal(b []byte) error {
@@ -365,6 +462,20 @@ func (m *GetTopicsReply) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetTopicsReply proto.InternalMessageInfo
 
+func (m *GetTopicsReply) GetStatus() bool {
+	if m != nil {
+		return m.Status
+	}
+	return false
+}
+
+func (m *GetTopicsReply) GetInfo() string {
+	if m != nil {
+		return m.Info
+	}
+	return ""
+}
+
 func (m *GetTopicsReply) GetTopics() []string {
 	if m != nil {
 		return m.Topics
@@ -372,41 +483,155 @@ func (m *GetTopicsReply) GetTopics() []string {
 	return nil
 }
 
+// Return topic info (status and opentimestamp hash)
+type GetTopicRequest struct {
+	Topic                string   `protobuf:"bytes,1,opt,name=topic,proto3" json:"topic,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetTopicRequest) Reset()         { *m = GetTopicRequest{} }
+func (m *GetTopicRequest) String() string { return proto.CompactTextString(m) }
+func (*GetTopicRequest) ProtoMessage()    {}
+func (*GetTopicRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{10}
+}
+
+func (m *GetTopicRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetTopicRequest.Unmarshal(m, b)
+}
+func (m *GetTopicRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetTopicRequest.Marshal(b, m, deterministic)
+}
+func (m *GetTopicRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetTopicRequest.Merge(m, src)
+}
+func (m *GetTopicRequest) XXX_Size() int {
+	return xxx_messageInfo_GetTopicRequest.Size(m)
+}
+func (m *GetTopicRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetTopicRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetTopicRequest proto.InternalMessageInfo
+
+func (m *GetTopicRequest) GetTopic() string {
+	if m != nil {
+		return m.Topic
+	}
+	return ""
+}
+
+type GetTopicReply struct {
+	Status               bool     `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	Info                 string   `protobuf:"bytes,2,opt,name=info,proto3" json:"info,omitempty"`
+	TopicStatus          string   `protobuf:"bytes,3,opt,name=topicStatus,proto3" json:"topicStatus,omitempty"`
+	OtsHash              string   `protobuf:"bytes,4,opt,name=otsHash,proto3" json:"otsHash,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetTopicReply) Reset()         { *m = GetTopicReply{} }
+func (m *GetTopicReply) String() string { return proto.CompactTextString(m) }
+func (*GetTopicReply) ProtoMessage()    {}
+func (*GetTopicReply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{11}
+}
+
+func (m *GetTopicReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetTopicReply.Unmarshal(m, b)
+}
+func (m *GetTopicReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetTopicReply.Marshal(b, m, deterministic)
+}
+func (m *GetTopicReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetTopicReply.Merge(m, src)
+}
+func (m *GetTopicReply) XXX_Size() int {
+	return xxx_messageInfo_GetTopicReply.Size(m)
+}
+func (m *GetTopicReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetTopicReply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetTopicReply proto.InternalMessageInfo
+
+func (m *GetTopicReply) GetStatus() bool {
+	if m != nil {
+		return m.Status
+	}
+	return false
+}
+
+func (m *GetTopicReply) GetInfo() string {
+	if m != nil {
+		return m.Info
+	}
+	return ""
+}
+
+func (m *GetTopicReply) GetTopicStatus() string {
+	if m != nil {
+		return m.TopicStatus
+	}
+	return ""
+}
+
+func (m *GetTopicReply) GetOtsHash() string {
+	if m != nil {
+		return m.OtsHash
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*PublishRequest)(nil), "service.PublishRequest")
 	proto.RegisterType((*PublishReply)(nil), "service.PublishReply")
+	proto.RegisterType((*FinalizeRequest)(nil), "service.FinalizeRequest")
+	proto.RegisterType((*FinalizeReply)(nil), "service.FinalizeReply")
 	proto.RegisterType((*SubscribeRequest)(nil), "service.SubscribeRequest")
 	proto.RegisterType((*SubscribeReply)(nil), "service.SubscribeReply")
 	proto.RegisterType((*PullDataRequest)(nil), "service.PullDataRequest")
 	proto.RegisterType((*PullDataReply)(nil), "service.PullDataReply")
 	proto.RegisterType((*GetTopicsRequest)(nil), "service.GetTopicsRequest")
 	proto.RegisterType((*GetTopicsReply)(nil), "service.GetTopicsReply")
+	proto.RegisterType((*GetTopicRequest)(nil), "service.GetTopicRequest")
+	proto.RegisterType((*GetTopicReply)(nil), "service.GetTopicReply")
 }
 
 func init() { proto.RegisterFile("service.proto", fileDescriptor_a0b84a42fa06f626) }
 
 var fileDescriptor_a0b84a42fa06f626 = []byte{
-	// 316 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x52, 0xd1, 0x4a, 0xc3, 0x30,
-	0x14, 0x5d, 0xd7, 0xb9, 0xba, 0x8b, 0xad, 0xe3, 0xa2, 0xb3, 0xf6, 0x69, 0xc4, 0x07, 0xfb, 0x34,
-	0x44, 0xdf, 0x14, 0x04, 0x61, 0x20, 0xbe, 0x48, 0xe9, 0xf6, 0x03, 0x69, 0x8d, 0x58, 0x28, 0xb6,
-	0x36, 0xa9, 0xd0, 0xdf, 0xf0, 0x8b, 0x25, 0x69, 0xda, 0xb5, 0xb3, 0x0c, 0x7c, 0xcb, 0xc9, 0xbd,
-	0xe7, 0xe6, 0x9c, 0x73, 0x03, 0x36, 0x67, 0xc5, 0x77, 0x12, 0xb3, 0x55, 0x5e, 0x64, 0x22, 0x43,
-	0x4b, 0x43, 0x72, 0x0f, 0x4e, 0x50, 0x46, 0x69, 0xc2, 0x3f, 0x42, 0xf6, 0x55, 0x32, 0x2e, 0xf0,
-	0x0c, 0x8e, 0x44, 0x96, 0x27, 0xb1, 0x6b, 0x2c, 0x0d, 0x7f, 0x16, 0xd6, 0x00, 0x11, 0x26, 0x6f,
-	0x54, 0x50, 0x77, 0xac, 0x2e, 0xd5, 0x99, 0x6c, 0xe1, 0xa4, 0xe5, 0xe6, 0x69, 0x85, 0x0b, 0x98,
-	0x72, 0x41, 0x45, 0xc9, 0x15, 0xf5, 0x38, 0xd4, 0x48, 0x72, 0x93, 0xcf, 0xf7, 0xac, 0xe1, 0xca,
-	0x33, 0xba, 0x60, 0xa9, 0xc1, 0x2f, 0x6b, 0xd7, 0x54, 0xd7, 0x0d, 0x24, 0x3e, 0xcc, 0x37, 0x65,
-	0xc4, 0xe3, 0x22, 0x89, 0xd8, 0x41, 0x4d, 0x24, 0x00, 0xa7, 0xd3, 0xf9, 0x5f, 0x05, 0x8d, 0x23,
-	0x73, 0x69, 0xb6, 0x8e, 0xae, 0xe1, 0x34, 0x28, 0xd3, 0x74, 0x4d, 0x05, 0x3d, 0xfc, 0xf4, 0x15,
-	0xd8, 0xbb, 0x46, 0xf9, 0xf2, 0x50, 0x3e, 0x08, 0xf3, 0x67, 0x26, 0xb6, 0x92, 0xc0, 0xf5, 0x38,
-	0xe2, 0x83, 0xd3, 0xb9, 0xd3, 0x9a, 0xd5, 0x4c, 0xa9, 0x59, 0x2a, 0xd1, 0xe8, 0xf6, 0x67, 0x0c,
-	0xf6, 0x6b, 0x26, 0x68, 0x51, 0x6d, 0xea, 0x5d, 0xe1, 0x13, 0xcc, 0x5a, 0xbf, 0x78, 0xb9, 0x6a,
-	0x36, 0xba, 0x9f, 0x96, 0x77, 0x31, 0x54, 0xca, 0xd3, 0x8a, 0x8c, 0xf0, 0x01, 0x2c, 0xbd, 0x32,
-	0xdc, 0x75, 0xf5, 0x3f, 0x80, 0x77, 0xfe, 0xb7, 0x50, 0x93, 0x1f, 0x61, 0x22, 0x4d, 0xa3, 0xdb,
-	0x69, 0xe8, 0x85, 0xe5, 0x2d, 0x06, 0x2a, 0x8a, 0xeb, 0x1b, 0x37, 0x86, 0xd4, 0xdf, 0x7a, 0xef,
-	0xe8, 0xdf, 0xcf, 0xa8, 0xa3, 0xbf, 0x1f, 0x15, 0x19, 0x45, 0x53, 0xf5, 0x7d, 0xef, 0x7e, 0x03,
-	0x00, 0x00, 0xff, 0xff, 0x48, 0xa7, 0xe8, 0xd3, 0xcf, 0x02, 0x00, 0x00,
+	// 418 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x54, 0xcb, 0x4e, 0xeb, 0x30,
+	0x10, 0x6d, 0x6e, 0x7a, 0xfb, 0x98, 0x7b, 0xd3, 0x56, 0x16, 0x94, 0x50, 0xb1, 0xa8, 0xcc, 0x82,
+	0xae, 0x2a, 0x04, 0x3b, 0x2a, 0x21, 0x21, 0x95, 0x47, 0x37, 0xa8, 0x6a, 0xfb, 0x03, 0x4e, 0x09,
+	0x6a, 0xa4, 0xd0, 0x84, 0xd8, 0x01, 0x85, 0xcf, 0xe0, 0x8b, 0x91, 0x1d, 0x3b, 0x71, 0x42, 0x15,
+	0x29, 0xbb, 0xcc, 0x78, 0xce, 0x99, 0x33, 0x9e, 0xe3, 0x80, 0x45, 0xdd, 0xe8, 0xc3, 0xdb, 0xba,
+	0xd3, 0x30, 0x0a, 0x58, 0x80, 0xda, 0x32, 0xc4, 0x37, 0xd0, 0x5b, 0xc6, 0x8e, 0xef, 0xd1, 0xdd,
+	0xca, 0x7d, 0x8f, 0x5d, 0xca, 0xd0, 0x11, 0xfc, 0x65, 0x41, 0xe8, 0x6d, 0x6d, 0x63, 0x6c, 0x4c,
+	0xba, 0xab, 0x34, 0x40, 0x08, 0x9a, 0x2f, 0x84, 0x11, 0xfb, 0x8f, 0x48, 0x8a, 0x6f, 0xbc, 0x81,
+	0xff, 0x19, 0x36, 0xf4, 0x13, 0x34, 0x84, 0x16, 0x65, 0x84, 0xc5, 0x54, 0x40, 0x3b, 0x2b, 0x19,
+	0x71, 0xac, 0xb7, 0x7f, 0x0d, 0x14, 0x96, 0x7f, 0x23, 0x1b, 0xda, 0x82, 0x78, 0x31, 0xb7, 0x4d,
+	0x91, 0x56, 0x21, 0xbe, 0x87, 0xfe, 0x83, 0xb7, 0x27, 0xbe, 0xf7, 0xe5, 0x56, 0x4b, 0x3a, 0x83,
+	0x6e, 0x48, 0x92, 0x37, 0x77, 0xcf, 0x16, 0x73, 0xc9, 0x9d, 0x27, 0xf0, 0x0c, 0xac, 0x9c, 0xa6,
+	0xa6, 0x3a, 0x3c, 0x81, 0xc1, 0x3a, 0x76, 0xe8, 0x36, 0xf2, 0x9c, 0x6a, 0x11, 0x78, 0x09, 0x3d,
+	0xad, 0xb2, 0xee, 0x2d, 0xa8, 0x5b, 0x35, 0xc7, 0x66, 0x76, 0xab, 0x17, 0xd0, 0x5f, 0xc6, 0xbe,
+	0x3f, 0x27, 0x8c, 0x54, 0xb7, 0x3e, 0x07, 0x2b, 0x2f, 0xe4, 0x9d, 0x0f, 0xed, 0x08, 0xc1, 0xe0,
+	0xd1, 0x65, 0x1b, 0x0e, 0xa0, 0x92, 0x0e, 0x6f, 0xa0, 0xa7, 0xe5, 0xea, 0x6a, 0x1e, 0x42, 0x4b,
+	0xf4, 0xa7, 0x52, 0xb5, 0x8c, 0xb8, 0x6e, 0xc5, 0x5a, 0xad, 0xfb, 0x13, 0xac, 0xbc, 0xb0, 0x6e,
+	0xf7, 0x31, 0xfc, 0x13, 0x2c, 0xeb, 0x14, 0x90, 0x7a, 0x47, 0x4f, 0x71, 0x67, 0x05, 0x8c, 0x3e,
+	0x11, 0xba, 0xb3, 0x9b, 0xa9, 0xb3, 0x64, 0x78, 0xf5, 0x6d, 0x82, 0xf5, 0x1c, 0x30, 0x12, 0x25,
+	0xeb, 0xd4, 0xfd, 0xe8, 0x0e, 0xba, 0xd9, 0xf6, 0xd0, 0xe9, 0x54, 0xbd, 0x91, 0xf2, 0xee, 0x47,
+	0x27, 0x87, 0x8e, 0x42, 0x3f, 0xc1, 0x0d, 0x34, 0x83, 0xb6, 0x7c, 0x04, 0x28, 0xaf, 0x2a, 0x3e,
+	0xa9, 0xd1, 0xf1, 0xef, 0x83, 0x14, 0x7c, 0x0b, 0x1d, 0x65, 0x52, 0x64, 0x67, 0x45, 0x25, 0xfb,
+	0x8f, 0x86, 0x07, 0x4e, 0x14, 0xbe, 0xc9, 0x2d, 0xa0, 0x61, 0x4b, 0xd6, 0xd1, 0xb0, 0x05, 0xaf,
+	0xe0, 0xc6, 0xc4, 0xb8, 0x34, 0xf8, 0xfc, 0x99, 0x13, 0xb4, 0xf9, 0xcb, 0x8e, 0xd1, 0xe6, 0x2f,
+	0x1a, 0x27, 0x1d, 0x41, 0xe5, 0x34, 0x19, 0x25, 0x27, 0x68, 0x32, 0x0a, 0xab, 0xc7, 0x0d, 0xa7,
+	0x25, 0x7e, 0x48, 0xd7, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff, 0xae, 0x36, 0x21, 0x36, 0xa1, 0x04,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -423,8 +648,10 @@ const _ = grpc.SupportPackageIsVersion4
 type NotaryServiceClient interface {
 	Subscribe(ctx context.Context, in *SubscribeRequest, opts ...grpc.CallOption) (*SubscribeReply, error)
 	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishReply, error)
+	Finalize(ctx context.Context, in *FinalizeRequest, opts ...grpc.CallOption) (*FinalizeReply, error)
 	Pull(ctx context.Context, opts ...grpc.CallOption) (NotaryService_PullClient, error)
 	GetTopics(ctx context.Context, in *GetTopicsRequest, opts ...grpc.CallOption) (*GetTopicsReply, error)
+	GetTopic(ctx context.Context, in *GetTopicRequest, opts ...grpc.CallOption) (*GetTopicReply, error)
 }
 
 type notaryServiceClient struct {
@@ -447,6 +674,15 @@ func (c *notaryServiceClient) Subscribe(ctx context.Context, in *SubscribeReques
 func (c *notaryServiceClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishReply, error) {
 	out := new(PublishReply)
 	err := c.cc.Invoke(ctx, "/service.NotaryService/Publish", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *notaryServiceClient) Finalize(ctx context.Context, in *FinalizeRequest, opts ...grpc.CallOption) (*FinalizeReply, error) {
+	out := new(FinalizeReply)
+	err := c.cc.Invoke(ctx, "/service.NotaryService/Finalize", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -493,12 +729,23 @@ func (c *notaryServiceClient) GetTopics(ctx context.Context, in *GetTopicsReques
 	return out, nil
 }
 
+func (c *notaryServiceClient) GetTopic(ctx context.Context, in *GetTopicRequest, opts ...grpc.CallOption) (*GetTopicReply, error) {
+	out := new(GetTopicReply)
+	err := c.cc.Invoke(ctx, "/service.NotaryService/GetTopic", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NotaryServiceServer is the server API for NotaryService service.
 type NotaryServiceServer interface {
 	Subscribe(context.Context, *SubscribeRequest) (*SubscribeReply, error)
 	Publish(context.Context, *PublishRequest) (*PublishReply, error)
+	Finalize(context.Context, *FinalizeRequest) (*FinalizeReply, error)
 	Pull(NotaryService_PullServer) error
 	GetTopics(context.Context, *GetTopicsRequest) (*GetTopicsReply, error)
+	GetTopic(context.Context, *GetTopicRequest) (*GetTopicReply, error)
 }
 
 // UnimplementedNotaryServiceServer can be embedded to have forward compatible implementations.
@@ -511,11 +758,17 @@ func (*UnimplementedNotaryServiceServer) Subscribe(ctx context.Context, req *Sub
 func (*UnimplementedNotaryServiceServer) Publish(ctx context.Context, req *PublishRequest) (*PublishReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Publish not implemented")
 }
+func (*UnimplementedNotaryServiceServer) Finalize(ctx context.Context, req *FinalizeRequest) (*FinalizeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Finalize not implemented")
+}
 func (*UnimplementedNotaryServiceServer) Pull(srv NotaryService_PullServer) error {
 	return status.Errorf(codes.Unimplemented, "method Pull not implemented")
 }
 func (*UnimplementedNotaryServiceServer) GetTopics(ctx context.Context, req *GetTopicsRequest) (*GetTopicsReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTopics not implemented")
+}
+func (*UnimplementedNotaryServiceServer) GetTopic(ctx context.Context, req *GetTopicRequest) (*GetTopicReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTopic not implemented")
 }
 
 func RegisterNotaryServiceServer(s *grpc.Server, srv NotaryServiceServer) {
@@ -554,6 +807,24 @@ func _NotaryService_Publish_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NotaryServiceServer).Publish(ctx, req.(*PublishRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NotaryService_Finalize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FinalizeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotaryServiceServer).Finalize(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.NotaryService/Finalize",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotaryServiceServer).Finalize(ctx, req.(*FinalizeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -602,6 +873,24 @@ func _NotaryService_GetTopics_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NotaryService_GetTopic_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTopicRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotaryServiceServer).GetTopic(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.NotaryService/GetTopic",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotaryServiceServer).GetTopic(ctx, req.(*GetTopicRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _NotaryService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "service.NotaryService",
 	HandlerType: (*NotaryServiceServer)(nil),
@@ -615,8 +904,16 @@ var _NotaryService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _NotaryService_Publish_Handler,
 		},
 		{
+			MethodName: "Finalize",
+			Handler:    _NotaryService_Finalize_Handler,
+		},
+		{
 			MethodName: "GetTopics",
 			Handler:    _NotaryService_GetTopics_Handler,
+		},
+		{
+			MethodName: "GetTopic",
+			Handler:    _NotaryService_GetTopic_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
