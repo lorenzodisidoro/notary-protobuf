@@ -3,8 +3,10 @@ syntax = "proto3";
 
 package service;
 
-// NotaryService defines methods provided by notary-server
-// all methods require API-key authentication
+// NotaryService defines methods provided by notary-server all methods require API-key authentication.
+// Reply messages have common fields like a bool success and string info. 
+// - success: is true if the call has successed, false otherwise
+// - info: information message from server  
 service NotaryService {
   rpc Subscribe(SubscribeRequest) returns (SubscribeReply) {}
   rpc Publish(PublishRequest) returns (PublishReply) {}
@@ -15,65 +17,69 @@ service NotaryService {
 }
 
 // publish can be called by a notary-client to open a topic and publish data on it
+// if topicID is empty string notary server create new topic (can retrieve topic ID in PublishReplay)
 message PublishRequest {
-  string topic = 1;
+  string topicID = 1;
   string data = 2;
 }
 
 message PublishReply {
-  bool status = 1;
+  bool success = 1;
   string info = 2;
   string topicID = 3;
 }
 
 // update notarisation per topic to make it final 
+// finalize topic will close it and block publish request
 message FinalizeRequest {
-  string topic = 1;
-  string paymentID = 2;
+  string topicID = 1;
+  string data = 2;
 }
 
 message FinalizeReply {
-  bool status = 1;
+  bool success = 1;
   string info = 2;
 }
 
 // subscribe can be called by Scheduler to subscribe topic
 message SubscribeRequest {
-  string topic = 1;
+  string topicID = 1;
 }
 
 message SubscribeReply {
-  bool status = 1;
+  bool success = 1;
   string info = 2;
   repeated string data = 3;
 }
 
-// stream 
+// stream published data into the topic to subscribers
 message PullDataRequest {
-  string topic = 1;
+  string topicID = 1;
 }
 
 message PullDataReply {
   string data = 2;
 }
 
-// Return published topics
+// return published topics
 message GetTopicsRequest {}
 
 message GetTopicsReply {
-  bool status = 1;
+  bool success = 1;
   string info = 2;
   repeated string topics = 3;
+  repeated string clientTopics = 4;
 }
 
-// Return topic info (status and opentimestamp hash)
+// return topic info (success, received data and opentimestamp hash of received data)
 message GetTopicRequest {
-  string topic = 1;
+  string topicID = 1;
 }
 
 message GetTopicReply {
-  bool status = 1;
+  bool success = 1;
   string info = 2;
-  string topicStatus = 3;
+  string status = 3;
   string otsHash = 4;
+  repeated string data = 5;
 }
